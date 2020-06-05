@@ -3,6 +3,7 @@ import '../App.css';
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Nav from './Nav';
+import Home from './Home';
 
 class App extends Component {
   componentDidMount() {
@@ -13,6 +14,7 @@ class App extends Component {
         return (
         <div className="App">
           <Nav/>
+          <Home/>
         </div>
       )
     }

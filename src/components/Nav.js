@@ -1,24 +1,43 @@
-import React from 'react'
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 
-export default function Nav() {
-    return (
-        <nav class="light-blue " role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Would You Rather</a>
-            <ul class="left hide-on-med-and-down">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">New Question</a></li>
-                <li><a href="#">Leader Board</a></li>
-            </ul>
+class Nav extends Component {
+    render() {
+        return (
+            <nav className="light-blue " role="navigation">
+                <div className="nav-wrapper container">
+                <ul className="left hide-on-med-and-down">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">New Question</a></li>
+                    <li><a href="#">Leader Board</a></li>
+                </ul>
 
-            <ul class="right hide-on-med-and-down">
-                <li><a href="#">Log out</a></li>
-            </ul>
+                <ul className="right hide-on-med-and-down">
+                    { this.props.user !== undefined && 
+                        <Fragment>
+                            <li><img alt="avatar" src={this.props.user.avatarURL} height='50' /></li>
+                            <li>{this.props.user.name}</li>
+                        </Fragment>
+                    }
+                    <li><a href="#">Log out</a></li>
+                </ul>
 
-            <ul id="nav-mobile" class="sidenav">
-                <li><a href="#">Navbar Link</a></li>
-            </ul>
-            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            </div>
-        </nav>
-    )
+                <ul id="nav-mobile" className="sidenav">
+                    <li><a href="#">Navbar Link</a></li>
+                </ul>
+                <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+                </div>
+            </nav>
+        )
+    }
 }
+
+function mapStateToProps({ users, authedUser }) {
+    const user = users[authedUser]
+
+    return {
+        user: user
+    }
+}
+
+export default connect(mapStateToProps)(Nav)
