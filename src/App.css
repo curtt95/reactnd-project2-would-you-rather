@@ -36,3 +36,44 @@
     transform: rotate(360deg);
   }
 }
+
+.question {
+  width: 100%;
+  max-width: 590px;
+  padding: 10px;
+  display: flex;
+  margin: 0 auto;
+  border: 1px solid #dad7d7;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.question-info {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hacky but less typing in the video */
+.question-info > div > span:first-child {
+  font-weight: bold;
+  margin-right: 5px;
+}
+.question-info > div > span:nth-child(2) {
+  color: #969696;
+  font-size: 16px;
+}
+.question-info > div > div {
+  color: #969696;
+  font-size: 15px;
+}
+.question-info > div > p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.avatar {
+  height: 50px;
+  border-radius: 25px;
+  margin: 10px;
+}

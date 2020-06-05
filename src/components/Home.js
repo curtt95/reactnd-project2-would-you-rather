@@ -10,7 +10,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <ul >
+                <ul className='dashboard-list'>
                     {this.props.questionIds.map((id) => (
                         <li key={id}>
                             <Question id={id} />
