@@ -28,8 +28,8 @@ class Nav extends Component {
                 <ul className="right hide-on-med-and-down">
                     { this.props.user !== undefined && 
                         <Fragment>
-                            <li><img alt="avatar" src={this.props.user.avatarURL} className='avatar' /></li>
-                            <li>{this.props.user.name}</li>
+                            {/**<li><img alt="avatar" src={this.props.user.avatarURL} className='avatar' /></li>*/}
+                            <li>Hello, {this.props.user.name}</li>
                         </Fragment>
                     }
                     <li>

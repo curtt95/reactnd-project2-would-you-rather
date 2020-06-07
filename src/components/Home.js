@@ -9,7 +9,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <ul className='dashboard-list'>
                     {this.props.questionIds.map((id) => (
                         <li key={id}>
