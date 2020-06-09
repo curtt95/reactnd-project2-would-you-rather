@@ -1,11 +1,12 @@
 import { getInitialData, saveQuestion } from '../utils/api'
 import { _saveQuestion } from '../utils/_DATA'
-import { receiveUsers, saveQuestionAnswerUser } from './users'
-import { receiveQuestions, saveQuestionAnswer } from './questions'
+import { receiveUsers } from './users'
+import { receiveQuestions } from './questions'
 import { setAuthedUser } from './authedUser'
 
 export const AUTHED_ID = 'tylermcginnis'
 export const ADD_QUESTION = 'ADD_QUESTION'
+export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER'
 
 export function addQuestion(question) {
     return {
@@ -13,6 +14,15 @@ export function addQuestion(question) {
         question
     }
   }
+
+export function saveQuestionAnswer (option, id, authedUser) {
+    return {
+      type: SAVE_QUESTION_ANSWER,
+      option,
+      id,
+      authedUser
+    }
+}
 
 export function handleInitialData() {
     return (dispatch) => {
@@ -36,7 +46,6 @@ export function handleSaveQuestionAnswer (option, id) {
         })
         .then((question) => {
             dispatch(saveQuestionAnswer(option, id, authedUser))
-            dispatch(saveQuestionAnswerUser(option, id, authedUser))
         }) // TODO : add to users state
     }
 }
