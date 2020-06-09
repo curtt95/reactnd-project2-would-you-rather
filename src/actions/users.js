@@ -7,3 +7,12 @@ export function receiveUsers(users) {
         users
     }
 }
+
+export function saveQuestionAnswerUser (option, id, authedUser) {
+    return {
+      type: SAVE_QUESTION_ANSWER,
+      option,
+      id,
+      authedUser
+    }
+  }

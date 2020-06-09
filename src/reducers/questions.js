@@ -16,7 +16,7 @@ export default function questions(state = {}, action) {
                         ...state[action.id][action.option],
                         votes: state[action.id][action.option].votes.includes(action.authedUser)
                                 ? state[action.id][action.option].votes
-                                : state[action.id][action.option].votes.concat([action.authedUser]) 
+                                : state[action.id][action.option].votes.concat([action.authedUser]) // TODO: find and replace - check rubric
                     }
                     
                 }
