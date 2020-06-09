@@ -8,7 +8,7 @@ export function saveQuestionAnswer (option, id, authedUser) {
       id,
       authedUser
     }
-  }
+}
 
 export function receiveQuestions(questions) {
     return {

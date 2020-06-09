@@ -1,10 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { handleAddQuestion } from '../actions/shared'
 
 class NewQuestion extends Component {
     state = {
         optionOne: '',
         optionTwo: ''
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+
+        const { optionOne, optionTwo } = this.state
+        const { dispatch } = this.props
+
+        dispatch(handleAddQuestion(optionOne, optionTwo))
+
+        this.setState({
+            optionOne: '',
+            optionTwo: ''
+        })
     }
 
     handleChange = (e) => {
@@ -19,16 +34,12 @@ class NewQuestion extends Component {
         }
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault()
-    }
-
     render() {
         const { optionOne, optionTwo } = this.state
 
         return (
             <div>
-                <h3 className='center'>Compose new Question</h3>
+                <h3 className='center'>Would You Rather...</h3>
                 <form className='new-question' onSubmit={this.handleSubmit}>
                     <input
                         placeholder="Enter your first option..."
@@ -39,7 +50,7 @@ class NewQuestion extends Component {
                     />
                     <p>OR</p>
                     <input
-                        placeholder="Enter your first option..."
+                        placeholder="Enter your second option..."
                         value={optionTwo}
                         onChange={this.handleChange}
                         type='text'
@@ -57,10 +68,4 @@ class NewQuestion extends Component {
     }
 }
 
-function mapStateToProps() {
-    return {
-
-    }
-}
-
-export default connect(mapStateToProps)(NewQuestion)
+export default connect()(NewQuestion)

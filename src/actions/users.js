@@ -1,5 +1,5 @@
 export const RECEIVE_USERS = 'RECEIVE_USERS'
-export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER' // TODO: add to user state
+export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER'
 
 export function receiveUsers(users) {
     return {
