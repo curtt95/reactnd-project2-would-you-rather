@@ -6,8 +6,8 @@ class QuestionResults extends Component {
         const { question, authedUser, user } = this.props
 
         const totalvotes = question.optionOne.votes.length + question.optionTwo.votes.length
-        const percentageOne = (question.optionOne.votes.length / totalvotes) * 100
-        const percentageTwo = (question.optionTwo.votes.length / totalvotes) * 100
+        const percentageOne = Math.round((question.optionOne.votes.length / totalvotes) * 100)
+        const percentageTwo = Math.round((question.optionTwo.votes.length / totalvotes) * 100)
 
         return (
             <div className="container">
