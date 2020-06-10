@@ -3,10 +3,6 @@ import { connect } from 'react-redux'
 import Question from './Question'
 
 class Home extends Component {
-    componentDidMount() {
-        console.log('questions', this.props.questions)
-    }
-
     render() {
         return (
             <div className="container">

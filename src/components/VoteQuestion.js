@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleSaveQuestionAnswer } from '../actions/shared'
+import QuestionResults from './QuestionResults'
 
 class VoteQuestion extends Component {
     state = {
@@ -33,8 +34,14 @@ class VoteQuestion extends Component {
     }
 
     render() {
-        const { user, question } = this.props
+        const { user, question, id, authedUser } = this.props
         const { option } = this.state
+
+        if (authedUser.answers[id] !== undefined) {
+            return (
+                <QuestionResults question={question} user={user} />
+            )
+        }
 
         return (
             <div className="container">
@@ -79,15 +86,17 @@ class VoteQuestion extends Component {
     }
 }
 
-function mapStateToProps({ users, questions }, props) {
+function mapStateToProps({ authedUser, users, questions }, props) {
     const { id } = props.match.params
     const question = questions[id]
     const user = users[question.author]
+    const authedUserobj = users[authedUser]
 
     return {
         question: question,
         user: user,
-        id: id
+        id: id,
+        authedUser: authedUserobj
     }
 }
 
