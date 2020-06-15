@@ -7,8 +7,12 @@ export function setAuthedUser(id) {
     }
 }
 
-export function handleSetAuthedUser (user) {
+export function handleSetAuthedUser (username) {
     return (dispatch, getState) => {
-      return dispatch(setAuthedUser(user))
+        const { users } = getState()
+
+        const user = Object.keys(users).filter((user) => users[user].name === username)
+
+        return dispatch(setAuthedUser(user[0]))
     }
 }

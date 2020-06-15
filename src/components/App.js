@@ -10,11 +10,26 @@ import LeaderBoard from './LeaderBoard'
 import Login from './Login'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 
+export const auth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true
+    setTimeout(cb, 100)
+  },
+  signout(cb) {
+    this.isAuthenticated = false
+    setTimeout(cb, 100)
+  }
+}
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    props.authedUser === null
+    auth.isAuthenticated
       ? <Component {...props} />
-      : <Redirect to='/login' />
+      : <Redirect to={{
+          pathname: '/login',
+          state: { from: props.location }
+        }} />
   )} />
 )
 
