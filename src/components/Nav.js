@@ -1,8 +1,20 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { auth } from './App'
+import { handleLogOut } from '../actions/authedUser'
 
 class Nav extends Component {
+    handleSubmit = (e) => {
+        e.preventDefault()
+        
+        const { dispatch } = this.props
+
+        dispatch(handleLogOut())
+
+        auth.signout()
+    }
+
     render() {
         return (
             <nav className="light-blue " role="navigation">
@@ -33,11 +45,15 @@ class Nav extends Component {
                                     <li>Hello, {this.props.user.name}</li>
                                 </Fragment>
                             }
-                            <li>
-                                <NavLink to='/logout' activeClassName='active'>
-                                    Log out
-                                </NavLink>
-                            </li>
+                            <form className='login' onSubmit={this.handleSubmit}>
+                                <li>
+                                    <button
+                                        className="btn"
+                                        type='submit'>
+                                        Log out
+                                    </button>
+                                </li>
+                            </form>
                         </ul>
 
                         <ul id="nav-mobile" className="sidenav">
