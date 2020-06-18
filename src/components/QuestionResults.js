@@ -5,9 +5,12 @@ class QuestionResults extends Component {
     render() {
         const { question, authedUser, user } = this.props
 
-        const totalvotes = question.optionOne.votes.length + question.optionTwo.votes.length
-        const percentageOne = Math.round((question.optionOne.votes.length / totalvotes) * 100)
-        const percentageTwo = Math.round((question.optionTwo.votes.length / totalvotes) * 100)
+        const votesOptionOne = question.optionOne.votes.length
+        const votesOptionTwo = question.optionTwo.votes.length
+
+        const totalvotes = votesOptionOne + votesOptionTwo
+        const percentageOne = Math.round((votesOptionOne / totalvotes) * 100)
+        const percentageTwo = Math.round((votesOptionTwo / totalvotes) * 100)
 
         return (
             <div className="container">
@@ -21,12 +24,14 @@ class QuestionResults extends Component {
                         <div className={ question.optionOne.votes.includes(authedUser) ? 'card answeredquestion' : 'card' }>
                             <div className="card-content">
                                 <p>Would you rather {question.optionOne.text}</p>
+                                <b>Votes: {votesOptionOne}</b><br/>
                                 <b>{percentageOne}%</b>
                             </div>
                         </div>
                         <div className={ question.optionTwo.votes.includes(authedUser) ? 'card answeredquestion' : 'card' }>
                             <div className="card-content">
                                 <p>Would you rather {question.optionTwo.text}</p>
+                                <b>Votes: {votesOptionTwo}</b><br/>
                                 <b>{percentageTwo}%</b>
                             </div>
                         </div>

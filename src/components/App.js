@@ -8,6 +8,7 @@ import VoteQuestion from './VoteQuestion'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 import Login from './Login'
+import NotFound from './NotFound'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 
 export const auth = {
@@ -46,10 +47,10 @@ class App extends Component {
           <div className="App">
             <Nav/>
             <PrivateRoute path='/' exact component={Home} authedUser={authedUser} />
-            <Route path='/login' exact component={Login} />
-            <PrivateRoute path='/question/:id' component={VoteQuestion} authedUser={authedUser} />
-            <PrivateRoute path='/add' component={NewQuestion} authedUser={authedUser} />
-            <PrivateRoute path='/leaderboard' component={LeaderBoard} authedUser={authedUser} />
+            <Route exact path='/login' component={Login} />
+            <PrivateRoute exact path='/question/:id' component={VoteQuestion} authedUser={authedUser} />
+            <PrivateRoute exact path='/add' component={NewQuestion} authedUser={authedUser} />
+            <PrivateRoute exact path='/leaderboard' component={LeaderBoard} authedUser={authedUser} />
           </div>
         </Router>
       )
