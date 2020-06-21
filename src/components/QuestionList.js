@@ -4,7 +4,7 @@ import Question from './Question'
 
 class QuestionList extends Component {
     state = {
-        answered: true
+        answered: false
     }
 
     handleClick = () => {
@@ -25,14 +25,15 @@ class QuestionList extends Component {
         return (
             <div className="container">
                 <button 
-                    className="btn"
+                    className="btn light-blue"
                     onClick={this.handleClick}>
                     Toggle Answered/Unanswered
                 </button>
+                <div class="">
                 {answered ? 
                     <Fragment>
                         <h3>Answered Questions</h3>
-                        <ul className='dashboard-list'>
+                        <ul className=''>
                             {this.props.answeredquestions.map((id) => (
                                 <li key={id}>
                                     <Question id={id} />
@@ -43,7 +44,7 @@ class QuestionList extends Component {
                     :
                     <Fragment>
                         <h3>Unanswered Questions</h3>
-                        <ul className='dashboard-list'>
+                        <ul className=''>
                             {this.props.unansweredquestions.map((id) => (
                                 <li key={id}>
                                     <Question id={id} />
@@ -52,6 +53,7 @@ class QuestionList extends Component {
                         </ul>
                     </Fragment>
                 }
+                </div>
             </div>
         )
     }

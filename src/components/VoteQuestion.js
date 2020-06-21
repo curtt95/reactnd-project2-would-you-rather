@@ -57,7 +57,7 @@ class VoteQuestion extends Component {
                         <label>
                             <input 
                                 type="radio" 
-                                className="with-gap"
+                                className="with-gap light-blue"
                                 onChange={this.handleChange}
                                 id="one"
                                 checked={option === "optionOne" ? true : false} />
@@ -67,14 +67,14 @@ class VoteQuestion extends Component {
                         <label>
                             <input 
                                 type="radio" 
-                                className="with-gap"
+                                className="with-gap light-blue"
                                 onChange={this.handleChange}
                                 id="two"
                                 checked={option === "optionTwo" ? true : false} />
                             <span>{question.optionTwo.text}</span>
                         </label>
                         <button
-                            className='btn'
+                            className='btn light-blue'
                             type='submit'
                             disabled={option === null}>
                             Vote

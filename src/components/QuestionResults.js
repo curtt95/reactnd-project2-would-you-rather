@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Avatar from './Avatar'
 
 class QuestionResults extends Component {
     render() {
@@ -15,20 +16,18 @@ class QuestionResults extends Component {
         return (
             <div className="container">
                 <div className="question">
-                    <img
-                        src={user.avatarURL}
-                        alt={`Avatar of ${user.name}`}
-                        className='avatar'
-                    />
+                    
                         <span>Asked by {user.name}</span>
-                        <div className={ question.optionOne.votes.includes(authedUser) ? 'card answeredquestion' : 'card' }>
+                        <Avatar user={user} />
+                        <h5>Results:</h5>
+                        <div className={ question.optionOne.votes.includes(authedUser) ? 'question answeredquestion' : 'question' }>
                             <div className="card-content">
                                 <p>Would you rather {question.optionOne.text}</p>
                                 <b>Votes: {votesOptionOne}</b><br/>
                                 <b>{percentageOne}%</b>
                             </div>
                         </div>
-                        <div className={ question.optionTwo.votes.includes(authedUser) ? 'card answeredquestion' : 'card' }>
+                        <div className={ question.optionTwo.votes.includes(authedUser) ? 'question answeredquestion' : 'question' }>
                             <div className="card-content">
                                 <p>Would you rather {question.optionTwo.text}</p>
                                 <b>Votes: {votesOptionTwo}</b><br/>

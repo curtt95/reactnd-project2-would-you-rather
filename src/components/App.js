@@ -9,7 +9,7 @@ import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 import Login from './Login'
 import NotFound from './NotFound'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 
 export const auth = {
   isAuthenticated: false,
@@ -46,11 +46,14 @@ class App extends Component {
         <Router>
           <div className="App">
             <Nav/>
-            <PrivateRoute path='/' exact component={Home} authedUser={authedUser} />
-            <Route exact path='/login' component={Login} />
-            <PrivateRoute exact path='/question/:id' component={VoteQuestion} authedUser={authedUser} />
-            <PrivateRoute exact path='/add' component={NewQuestion} authedUser={authedUser} />
-            <PrivateRoute exact path='/leaderboard' component={LeaderBoard} authedUser={authedUser} />
+            <Switch>
+              <PrivateRoute path='/' exact component={Home} authedUser={authedUser} />
+              <Route exact path='/login' component={Login} />
+              <PrivateRoute path='/question/:id' component={VoteQuestion} authedUser={authedUser} />
+              <PrivateRoute exact path='/add' component={NewQuestion} authedUser={authedUser} />
+              <PrivateRoute exact path='/leaderboard' component={LeaderBoard} authedUser={authedUser} />
+              <Route component={NotFound} />
+            </Switch>
           </div>
         </Router>
       )

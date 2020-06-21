@@ -4,6 +4,7 @@ import Loading from './Loading'
 import { handleSetAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
 import { auth } from './App'
+import Nav from './Nav'
 
 class Login extends Component {
     state = {
@@ -53,6 +54,7 @@ class Login extends Component {
 
         return (
             <div className="container">
+                <h2>Would You Rather...</h2>
                 <h3>Login</h3>
                 <form className='login' onSubmit={this.handleSubmit}>
                     <select 
@@ -68,7 +70,7 @@ class Login extends Component {
                     </select>
                     <br/>
                     <button
-                        className='btn'
+                        className='btn light-blue'
                         type='submit'>
                         Login
                     </button>

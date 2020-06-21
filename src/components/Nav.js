@@ -18,7 +18,6 @@ class Nav extends Component {
     render() {
         return (
             <nav className="light-blue " role="navigation">
-                { this.props.user !== undefined && 
                     <div className="nav-wrapper container">
                         <ul className="left hide-on-med-and-down">
                             <li>
@@ -43,17 +42,18 @@ class Nav extends Component {
                                 <Fragment>
                                     {/**<li><img alt="avatar" src={this.props.user.avatarURL} className='avatar' /></li>*/}
                                     <li>Hello, {this.props.user.name}</li>
+                                
+                                    <form className='login' onSubmit={this.handleSubmit}>
+                                        <li>
+                                            <button
+                                                className="btn"
+                                                type='submit'>
+                                                Log out
+                                            </button>
+                                        </li>
+                                    </form>
                                 </Fragment>
                             }
-                            <form className='login' onSubmit={this.handleSubmit}>
-                                <li>
-                                    <button
-                                        className="btn"
-                                        type='submit'>
-                                        Log out
-                                    </button>
-                                </li>
-                            </form>
                         </ul>
 
                         <ul id="nav-mobile" className="sidenav">
@@ -61,7 +61,6 @@ class Nav extends Component {
                         </ul>
                         <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                     </div>
-                }   
             </nav>
         )
     }
