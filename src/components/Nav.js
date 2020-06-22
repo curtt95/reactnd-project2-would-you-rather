@@ -42,16 +42,11 @@ class Nav extends Component {
                                 <Fragment>
                                     {/**<li><img alt="avatar" src={this.props.user.avatarURL} className='avatar' /></li>*/}
                                     <li>Hello, {this.props.user.name}</li>
-                                
-                                    <form className='login' onSubmit={this.handleSubmit}>
-                                        <li>
-                                            <button
-                                                className="btn"
-                                                type='submit'>
-                                                Log out
-                                            </button>
-                                        </li>
-                                    </form>
+                                    <li>
+                                        <form className='login' onSubmit={this.handleSubmit}>
+                                            <button type="submit" className="waves-effect waves-light btn light-blue">Log Out</button>
+                                        </form>
+                                    </li>
                                 </Fragment>
                             }
                         </ul>

@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleSaveQuestionAnswer } from '../actions/shared'
-import QuestionResults from './QuestionResults'
 
-class VoteQuestion extends Component {
+class VoteQuestion1 extends Component {
     state = {
         option: null
     }
@@ -16,9 +15,7 @@ class VoteQuestion extends Component {
 
         dispatch(handleSaveQuestionAnswer(option, id))
 
-        this.setState({
-            option: null
-        })
+        this.props.updateQuestion()
     }
 
     handleChange = (e) => {
@@ -34,23 +31,12 @@ class VoteQuestion extends Component {
     }
 
     render() {
-        const { user, question, id, authedUser } = this.props
+        const { user, question } = this.props
         const { option } = this.state
 
-        if (authedUser.answers[id] !== undefined) {
-            return (
-                <QuestionResults question={question} user={user} />
-            )
-        }
-
         return (
-            <div className="container">
-                <div className="question">
-                    <img
-                        src={user.avatarURL}
-                        alt={`Avatar of ${user.name}`}
-                        className='avatar'
-                    />
+            <div className="row">
+                <div className="col s12">
                     <form className='question-info' onSubmit={this.handleSubmit}>
                         <span>{user.name} asks...</span>
                         <b>Would You Rather...</b>
@@ -86,18 +72,13 @@ class VoteQuestion extends Component {
     }
 }
 
-function mapStateToProps({ authedUser, users, questions }, props) {
-    const { id } = props.match.params
-    const question = questions[id]
-    const user = users[question.author]
-    const authedUserobj = users[authedUser]
-
+function mapStateToProps({}, { user, question, updateQuestion, id }) {
     return {
+        id: id,
         question: question,
         user: user,
-        id: id,
-        authedUser: authedUserobj
+        updateQuestion: updateQuestion
     }
 }
 
-export default connect(mapStateToProps)(VoteQuestion)
+export default connect(mapStateToProps)(VoteQuestion1)

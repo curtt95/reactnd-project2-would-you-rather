@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Avatar from './Avatar'
 
-class QuestionResults extends Component {
+class QuestionResults1 extends Component {
     render() {
-        const { question, authedUser, user } = this.props
+        const { question, authedUser } = this.props
 
         const votesOptionOne = question.optionOne.votes.length
         const votesOptionTwo = question.optionTwo.votes.length
@@ -14,26 +13,27 @@ class QuestionResults extends Component {
         const percentageTwo = Math.round((votesOptionTwo / totalvotes) * 100)
 
         return (
-            <div className="container">
-                <div className="question">
-                    
-                        <span>Asked by {user.name}</span>
-                        <Avatar user={user} />
-                        <h5>Results:</h5>
-                        <div className={ question.optionOne.votes.includes(authedUser) ? 'question answeredquestion' : 'question' }>
-                            <div className="card-content">
-                                <p>Would you rather {question.optionOne.text}</p>
-                                <b>Votes: {votesOptionOne}</b><br/>
-                                <b>{percentageOne}%</b>
-                            </div>
+            <div className="row">
+                <h5>Results:</h5>
+                <div className={ question.optionOne.votes.includes(authedUser) ? 'col s6 question light-blue' : 'col s6 question' }>
+                    <div className="card-content">
+                        <p>Would you rather {question.optionOne.text}</p>
+                        <b>Votes: {votesOptionOne}</b><br/>
+                        <b>{percentageOne}%</b>
+                        <div className="progress">
+                            <div className="determinate light-blue" style={{width: percentageOne + "%"}}></div>
                         </div>
-                        <div className={ question.optionTwo.votes.includes(authedUser) ? 'question answeredquestion' : 'question' }>
-                            <div className="card-content">
-                                <p>Would you rather {question.optionTwo.text}</p>
-                                <b>Votes: {votesOptionTwo}</b><br/>
-                                <b>{percentageTwo}%</b>
-                            </div>
+                    </div>
+                </div>
+                <div className={ question.optionTwo.votes.includes(authedUser) ? 'col s6 question light-blue' : 'col s6 question' }>
+                    <div className="card-content">
+                        <p>Would you rather {question.optionTwo.text}</p>
+                        <b>Votes: {votesOptionTwo}</b><br/>
+                        <b>{percentageTwo}%</b>
+                        <div className="progress">
+                            <div className="determinate light-blue" style={{width: percentageTwo + "%"}}></div>
                         </div>
+                    </div>
                 </div>
             </div>
         )
@@ -48,4 +48,4 @@ function mapStateToProps({ authedUser }, { question, user }) {
     }
 }
 
-export default connect(mapStateToProps)(QuestionResults)
+export default connect(mapStateToProps)(QuestionResults1)

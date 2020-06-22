@@ -66,7 +66,7 @@ class NewQuestion extends Component {
                                 id="optionTwo"
                             />
                             <button
-                                className='btn'
+                                className='btn light-blue'
                                 type='submit'
                                 disabled={optionOne === '' || optionTwo === ''}>
                                 Ask Question

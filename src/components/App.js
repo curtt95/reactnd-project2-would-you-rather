@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Nav from './Nav';
 import Home from './Home';
-import VoteQuestion from './VoteQuestion'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 import Login from './Login'
 import NotFound from './NotFound'
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
+import QuestionInfo from './QuestionInfo'
 
 export const auth = {
   isAuthenticated: false,
@@ -49,7 +49,7 @@ class App extends Component {
             <Switch>
               <PrivateRoute path='/' exact component={Home} authedUser={authedUser} />
               <Route exact path='/login' component={Login} />
-              <PrivateRoute path='/question/:id' component={VoteQuestion} authedUser={authedUser} />
+              <PrivateRoute path='/question/:id' component={QuestionInfo} authedUser={authedUser} />
               <PrivateRoute exact path='/add' component={NewQuestion} authedUser={authedUser} />
               <PrivateRoute exact path='/leaderboard' component={LeaderBoard} authedUser={authedUser} />
               <Route component={NotFound} />

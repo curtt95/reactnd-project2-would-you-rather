@@ -8,7 +8,7 @@ import Nav from './Nav'
 
 class Login extends Component {
     state = {
-        user: '',
+        user: '-- Please Select --',
         redirectToReferrer: false
     }
 
@@ -22,7 +22,7 @@ class Login extends Component {
         const { user } = this.state
         const { dispatch } = this.props
 
-        if (user !== '') {
+        if (user !== '-- Please Select --') {
             dispatch(handleSetAuthedUser(user))
 
             auth.authenticate(() => {
@@ -63,7 +63,7 @@ class Login extends Component {
                         value={user}
                         onChange={this.handleChange}
                         >
-                        <option key="1"></option>
+                        <option key="1">-- Please Select --</option>
                         {Object.keys(users).map((user) => (
                             <option key={users[user].id}>{users[user].name}</option>
                         ))}

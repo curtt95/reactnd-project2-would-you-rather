@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Avatar from './Avatar'
+import Score from './Score'
 
 class LeaderBoardItem extends Component {
     render() {
@@ -20,14 +21,13 @@ class LeaderBoardItem extends Component {
                                     <div className="col s3 avatarparent">
                                         <Avatar user={item} />
                                     </div>
-                                    <div className='col s9 question-text'>
+                                    <div className='col s6 question-text'>
                                         <div>
-                                            <span>{item.name}</span>
-                                            <p>Score: {item.questions.length + Object.keys(item.answers).length}</p>
                                             <p>Number of questions: {item.questions.length}</p>
                                             <p>Number of answers: {Object.keys(item.answers).length}</p>
                                         </div>
                                     </div>
+                                    <Score score={item.questions.length + Object.keys(item.answers).length}/>
                                 </div>
                             </div>
                         </div>
