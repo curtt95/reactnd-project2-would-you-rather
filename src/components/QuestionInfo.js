@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Avatar from './Avatar'
-import QuestionResults1 from './QuestionResults'
-import VoteQuestion1 from './VoteQuestion'
+import QuestionResults from './QuestionResults'
+import VoteQuestion from './VoteQuestion'
+import NotFound from './NotFound'
 
 class QuestionInfo extends Component {
     state = {
@@ -17,6 +18,10 @@ class QuestionInfo extends Component {
 
     render() {
         const { question, user, id } = this.props
+
+        if (question === undefined) {
+            return <NotFound />
+        }
         
         return(
             <div className="container">
@@ -33,8 +38,8 @@ class QuestionInfo extends Component {
                                     </div>
                                     <div className="col s9 question-text">
                                         { this.state.answered
-                                            ? <QuestionResults1 question={question} user={user}/>
-                                            : <VoteQuestion1 question={question} user={user} id={id} updateQuestion={this.updateQuestion}/>
+                                            ? <QuestionResults question={question} user={user}/>
+                                            : <VoteQuestion question={question} user={user} id={id} updateQuestion={this.updateQuestion}/>
                                         }
                                     </div>
                                 </div> 
@@ -50,7 +55,7 @@ class QuestionInfo extends Component {
 function mapStateToProps({ authedUser, users, questions }, props) {
     const { id } = props.match.params
     const question = questions[id]
-    const user = users[question.author]
+    const user = question !== undefined ? users[question.author] : ''
     const authedUserobj = users[authedUser]
 
     return {

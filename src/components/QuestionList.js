@@ -29,7 +29,7 @@ class QuestionList extends Component {
                     onClick={this.handleClick}>
                     Toggle Answered/Unanswered
                 </button>
-                <div>
+                <div className='question-list'>
                 {answered ? 
                     <Fragment>
                         <h3>Answered Questions</h3>

@@ -4,7 +4,7 @@ import Loading from './Loading'
 import { handleSetAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
 import { auth } from './App'
-import Nav from './Nav'
+import { Button } from '@material-ui/core';
 
 class Login extends Component {
     state = {
@@ -74,6 +74,9 @@ class Login extends Component {
                         type='submit'>
                         Login
                     </button>
+                    <Button variant="contained" color="primary" disableElevation>
+  Disable elevation
+</Button>
                 </form>
             </div>
         )

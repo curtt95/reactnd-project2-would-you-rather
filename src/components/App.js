@@ -10,6 +10,7 @@ import Login from './Login'
 import NotFound from './NotFound'
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import QuestionInfo from './QuestionInfo'
+import LoadingBar from 'react-redux-loading'
 
 export const auth = {
   isAuthenticated: false,
@@ -45,6 +46,7 @@ class App extends Component {
     return (
         <Router>
           <div className="App">
+            <LoadingBar />
             <Nav/>
             <Switch>
               <PrivateRoute path='/' exact component={Home} authedUser={authedUser} />

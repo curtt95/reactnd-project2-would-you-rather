@@ -6,6 +6,7 @@ class LeaderBoard extends Component {
     render() {
         return (
             <div className="container">
+                <h4>Leaderboard</h4>
                 <ul className='dashboard-list'>
                     {this.props.users.map((id) => (
                         <li key={id}>

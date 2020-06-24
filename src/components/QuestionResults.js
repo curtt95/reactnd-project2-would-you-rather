@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-class QuestionResults1 extends Component {
+class QuestionResults extends Component {
     render() {
         const { question, authedUser } = this.props
 
@@ -48,4 +48,4 @@ function mapStateToProps({ authedUser }, { question, user }) {
     }
 }
 
-export default connect(mapStateToProps)(QuestionResults1)
+export default connect(mapStateToProps)(QuestionResults)

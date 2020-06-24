@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleSaveQuestionAnswer } from '../actions/shared'
 
-class VoteQuestion1 extends Component {
+class VoteQuestion extends Component {
     state = {
         option: null
     }
@@ -81,4 +81,4 @@ function mapStateToProps({}, { user, question, updateQuestion, id }) {
     }
 }
 
-export default connect(mapStateToProps)(VoteQuestion1)
+export default connect(mapStateToProps)(VoteQuestion)
