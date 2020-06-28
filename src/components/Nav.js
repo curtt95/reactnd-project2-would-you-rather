@@ -1,10 +1,15 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { auth } from './App'
 import { handleLogOut } from '../actions/authedUser'
+import { Menu } from 'semantic-ui-react'
 
 class Nav extends Component {
+    state = { 
+        activeItem: '' 
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
         
@@ -15,48 +20,57 @@ class Nav extends Component {
         auth.signout()
     }
 
+    handleItemClick = (e, { name }) => {
+        this.setState({ 
+            activeItem: name 
+        })
+    }
+
     render() {
+        const { activeItem } = this.state
+
         return (
-            <nav className="light-blue " role="navigation">
-                    <div className="nav-wrapper container">
-                        <ul className="left hide-on-med-and-down">
-                            <li>
-                                <NavLink to='/' exact activeClassName='active'>
-                                    Home
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/add' activeClassName='active'>
-                                    New Question
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/leaderboard' activeClassName='active'>
-                                    Leaderboard
-                                </NavLink>
-                            </li>
-                        </ul>
+            <div>
+                <Menu pointing secondary>
+                    <Menu.Item
+                        name='home'
+                        as={NavLink}
+                        to='/'
+                        exact
+                        active={activeItem === 'home'}
+                        onClick={this.handleItemClick}
+                    />
+                    <Menu.Item
+                        name='new question'
+                        as={NavLink}
+                        to='/add'
+                        active={activeItem === 'new question'}
+                        onClick={this.handleItemClick}
+                    />
+                    <Menu.Item
+                        name='leaderboard'
+                        as={NavLink}
+                        to='/leaderboard'
+                        active={activeItem === 'leaderboard'}
+                        onClick={this.handleItemClick}
+                    />
 
-                        <ul className="right hide-on-med-and-down">
-                            { this.props.user !== undefined && 
-                                <Fragment>
-                                    {/**<li><img alt="avatar" src={this.props.user.avatarURL} className='avatar' /></li>*/}
-                                    <li>Hello, {this.props.user.name}</li>
-                                    <li>
-                                        <form className='login' onSubmit={this.handleSubmit}>
-                                            <button type="submit" className="waves-effect waves-light btn light-blue">Log Out</button>
-                                        </form>
-                                    </li>
-                                </Fragment>
-                            }
-                        </ul>
-
-                        <ul id="nav-mobile" className="sidenav">
-                            <li></li>
-                        </ul>
-                        <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-                    </div>
-            </nav>
+                    { this.props.user !== undefined && 
+                        <Menu.Menu position='right'>
+                            <Menu.Item>
+                                <span>
+                                    Hello, {this.props.user.name}
+                                </span>
+                            </Menu.Item>
+                            <Menu.Item
+                                name='logout'
+                                active={activeItem === 'logout'}
+                                onClick={this.handleSubmit}
+                            />
+                        </Menu.Menu>
+                    }
+                </Menu>
+            </div>         
         )
     }
 }

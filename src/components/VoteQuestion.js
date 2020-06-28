@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleSaveQuestionAnswer } from '../actions/shared'
+import { Form } from 'semantic-ui-react'
 
 class VoteQuestion extends Component {
     state = {
@@ -31,42 +32,33 @@ class VoteQuestion extends Component {
     }
 
     render() {
-        const { user, question } = this.props
+        const { question } = this.props
         const { option } = this.state
 
         return (
-            <div className="row">
-                <div className="col s12">
-                    <form className='question-info' onSubmit={this.handleSubmit}>
-                        <span>{user.name} asks...</span>
-                        <b>Would You Rather...</b>
-                        <label>
-                            <input 
-                                type="radio" 
-                                className="with-gap light-blue"
-                                onChange={this.handleChange}
-                                id="one"
-                                checked={option === "optionOne" ? true : false} />
-                            <span>{question.optionOne.text}</span>
-                        </label>
-                        <p>OR</p>
-                        <label>
-                            <input 
-                                type="radio" 
-                                className="with-gap light-blue"
-                                onChange={this.handleChange}
-                                id="two"
-                                checked={option === "optionTwo" ? true : false} />
-                            <span>{question.optionTwo.text}</span>
-                        </label>
-                        <button
-                            className='btn light-blue'
-                            type='submit'
-                            disabled={option === null}>
-                            Vote
-                        </button>
-                    </form>
-                </div>
+            <div className="radio-toolbar">
+                <Form onSubmit={this.handleSubmit}>
+                    <b>Would You Rather...</b>
+                    <Form.Radio
+                        fluid
+                        id="one"
+                        label={question.optionOne.text}
+                        value='one'
+                        checked={option === "optionOne" ? true : false}
+                        onChange={this.handleChange}
+                    />
+                    <Form.Radio
+                        fluid
+                        id="two"
+                        label={question.optionTwo.text}
+                        value='two'
+                        checked={option === "optionTwo" ? true : false}
+                        onChange={this.handleChange}
+                    />
+                    <Form.Button disabled={option === null} fluid primary>
+                        Vote
+                    </Form.Button>
+                </Form>
             </div>
         )
     }

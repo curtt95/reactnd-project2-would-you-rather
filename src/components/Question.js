@@ -2,41 +2,42 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Avatar from './Avatar'
+import { Grid, Header, Segment, Divider, Button } from 'semantic-ui-react'
 
 class Question extends Component {
     render() {
-        const { user, question } = this.props
+        const { user, question, answered } = this.props
 
         return (
-            <Link to={`/question/${question.id}`} className="row">
-                <div className="col s12">
-                    <div className="card">
-                        <div className="title light-blue">
-                            <b>{user.name} asks ...</b>
-                        </div>
-                        <div className="card-content">
-                            <div className="row">
-                                <div className="col s3 avatarparent">
-                                    <Avatar user={user} />
+            <Link to={`/question/${question.id}`}>
+                <Header as='h5' attached='top'>
+                    <b>{user.name} asks ...</b>
+                </Header>
+                <Segment attached>
+                    <Grid columns={2} divided>
+                        <Grid.Row>
+                            <Grid.Column width={4}>
+                                <Avatar user={user} />
+                                <Divider vertical />
+                            </Grid.Column>
+                            <Grid.Column width={12}>
+                                <div>
+                                    <p>{question.optionOne.text}</p>
+                                    <p>OR...</p>
                                 </div>
-                                <div className="col s9 question-text">
-                                    <div>
-                                        <p>{question.optionOne.text}</p>
-                                        <p>OR</p>
-                                        <p>{question.optionTwo.text}</p>
-                                    </div>
-                                </div>
-                                <a href={`/question/${question.id}`} className="btn-floating halfway-fab waves-effect waves-light blue"><i className="material-icons">arrow_forward</i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                <Button fluid primary>
+                                    { answered ? 'View Results' : 'Vote' }
+                                </Button>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
             </Link>
         )
     }
 }
 
-function mapStateToProps({ users, questions }, { id }) {
+function mapStateToProps({ users, questions }, { id, answered }) {
     const question =  questions[id]
     const user = users[question.author]
 

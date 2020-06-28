@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/shared'
+import { Header, Segment, Grid, Button } from 'semantic-ui-react'
 
 class NewQuestion extends Component {
     state = {
@@ -38,42 +39,43 @@ class NewQuestion extends Component {
         const { optionOne, optionTwo } = this.state
 
         return (
-            <div className="new-question container">
-                <div className="row">
-                    <div className="col s12">
-                        <div className="title">
-                            New Question
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col s12">
-                        <h3 className='center'>Would You Rather...</h3>
-                        <form className='new-question' onSubmit={this.handleSubmit}>
-                            <input
-                                placeholder="Enter your first option..."
-                                value={optionOne}
-                                onChange={this.handleChange}
-                                type='text'
-                                id="optionOne"
-                            />
-                            <p>OR</p>
-                            <input
-                                placeholder="Enter your second option..."
-                                value={optionTwo}
-                                onChange={this.handleChange}
-                                type='text'
-                                id="optionTwo"
-                            />
-                            <button
-                                className='btn light-blue'
-                                type='submit'
-                                disabled={optionOne === '' || optionTwo === ''}>
-                                Ask Question
-                            </button>
-                        </form>
-                    </div>
-                </div>
+            <div className="container">
+                <Header as='h5' attached='top'>
+                    Create New Question
+                </Header>
+                <Segment attached>
+                    <Grid divided>
+                        <Grid.Row>
+                            <Grid.Column>
+                            <Header as='h4'>
+                                Would You Rather...
+                            </Header>
+                            <form className='new-question' onSubmit={this.handleSubmit}>
+                                <input
+                                    placeholder="Enter your first option..."
+                                    value={optionOne}
+                                    onChange={this.handleChange}
+                                    type='text'
+                                    id="optionOne"
+                                />
+                                <p>OR</p>
+                                <input
+                                    placeholder="Enter your second option..."
+                                    value={optionTwo}
+                                    onChange={this.handleChange}
+                                    type='text'
+                                    id="optionTwo"
+                                />
+                                <Button 
+                                    disabled={optionOne === '' || optionTwo === ''}
+                                    primary>
+                                    Ask Question
+                                </Button>
+                            </form>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
             </div>
         )
     }

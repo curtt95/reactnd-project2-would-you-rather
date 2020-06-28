@@ -1,39 +1,37 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import Avatar from './Avatar'
 import Score from './Score'
+import { Grid, Header, Segment, Divider } from 'semantic-ui-react'
 
 class LeaderBoardItem extends Component {
     render() {
         const { item } = this.props
 
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col s12">
-                        <div className="card">
-                            <div className="title light-blue">
-                                <b>{item.name}</b>
-                            </div>
-                            <a className="btn-floating halfway-fab waves-effect waves-light blue"><i className="material-icons">looks_one</i></a>
-                            <div className="card-content">
-                                <div className="row">
-                                    <div className="col s3 avatarparent">
-                                        <Avatar user={item} />
-                                    </div>
-                                    <div className='col s6 question-text'>
-                                        <div>
-                                            <p>Number of questions: {item.questions.length}</p>
-                                            <p>Number of answers: {Object.keys(item.answers).length}</p>
-                                        </div>
-                                    </div>
-                                    <Score score={item.questions.length + Object.keys(item.answers).length}/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Fragment>
+                <Header as='h5' attached='top'>
+                    <b>{item.name} asks ...</b>
+                </Header>
+                <Segment attached>
+                    <Grid columns={2} divided>
+                        <Grid.Row>
+                            <Grid.Column width={4}>
+                                <Avatar user={item} />
+                                <Divider vertical />
+                            </Grid.Column>
+                            <Grid.Column width={8}>
+                                <p>Number of questions: {item.questions.length}</p>
+                                <p>Number of answers: {Object.keys(item.answers).length}</p>
+                            </Grid.Column>
+                            <Divider vertical />
+                            <Grid.Column width={4}>
+                                <Score score={item.questions.length + Object.keys(item.answers).length}/>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
+            </Fragment>
         )
     }
 }

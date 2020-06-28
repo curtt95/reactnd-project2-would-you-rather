@@ -1,19 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import LeaderBoardItem from './LeaderBoardItem'
+import { Header, Segment } from 'semantic-ui-react'
 
 class LeaderBoard extends Component {
     render() {
         return (
             <div className="container">
-                <h4>Leaderboard</h4>
-                <ul className='dashboard-list'>
+                <Header as='h5' attached='top' primary>
+                    Leaderboard
+                </Header>
+                <Segment attached>
                     {this.props.users.map((id) => (
-                        <li key={id}>
+                        <Fragment key={id}>
                             <LeaderBoardItem id={id} />
-                        </li>
+                        </Fragment>
                     ))}
-                </ul>
+                </Segment>
             </div>
         )
     }

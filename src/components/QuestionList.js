@@ -1,60 +1,57 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
+import { Menu, Segment } from 'semantic-ui-react'
 
 class QuestionList extends Component {
     state = {
-        answered: false
+        activeItem: 'unanswered'
     }
 
-    handleClick = () => {
-        if (this.state.answered) {
-            this.setState({
-                answered: false
-            })
-        } else {
-            this.setState({
-                answered: true
-            })
-        }
+    handleClick = (e, { name }) => {
+        this.setState({
+            activeItem: name
+        })
     }
 
     render() {
-        const { answered } = this.state
+        const { activeItem } = this.state
 
         return (
-            <div className="container">
-                <button 
-                    className="btn light-blue"
-                    onClick={this.handleClick}>
-                    Toggle Answered/Unanswered
-                </button>
-                <div className='question-list'>
-                {answered ? 
-                    <Fragment>
-                        <h3>Answered Questions</h3>
-                        <ul className=''>
-                            {this.props.answeredquestions.map((id) => (
-                                <li key={id}>
-                                    <Question id={id} />
-                                </li>
-                            ))}
-                        </ul>
-                    </Fragment>
+            <Fragment>
+                <Menu pointing>
+                    <Menu.Item
+                        name='unanswered'
+                        active={activeItem === 'unanswered'}
+                        onClick={this.handleClick}
+                    />
+                    <Menu.Item
+                        name='answered'
+                        active={activeItem === 'answered'}
+                        onClick={this.handleClick}
+                    />
+                </Menu>
+
+                { activeItem === "unanswered" ? 
+                    <Segment>
+                        {this.props.unansweredquestions.map((id) => (
+                            <Fragment key={id}>
+                                <Question id={id} answered={false}/>
+                                <br/>
+                            </Fragment>
+                        ))}
+                    </Segment>
                     :
-                    <Fragment>
-                        <h3>Unanswered Questions</h3>
-                        <ul className=''>
-                            {this.props.unansweredquestions.map((id) => (
-                                <li key={id}>
-                                    <Question id={id} />
-                                </li>
-                            ))}
-                        </ul>
-                    </Fragment>
+                    <Segment>
+                        {this.props.answeredquestions.map((id) => (
+                            <Fragment key={id}>
+                                <Question id={id} answered={true}/>
+                                <br/>
+                            </Fragment>
+                        ))}
+                    </Segment>
                 }
-                </div>
-            </div>
+            </Fragment>
         )
     }
 }

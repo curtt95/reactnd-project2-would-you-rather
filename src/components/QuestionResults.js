@@ -13,7 +13,7 @@ class QuestionResults extends Component {
         const percentageTwo = Math.round((votesOptionTwo / totalvotes) * 100)
 
         return (
-            <div className="row">
+            <div className="container">
                 <h5>Results:</h5>
                 <div className={ question.optionOne.votes.includes(authedUser) ? 'col s6 question light-blue' : 'col s6 question' }>
                     <div className="card-content">

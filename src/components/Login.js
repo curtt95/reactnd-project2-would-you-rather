@@ -4,7 +4,7 @@ import Loading from './Loading'
 import { handleSetAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
 import { auth } from './App'
-import { Button } from '@material-ui/core';
+import { Button, Header, Segment, Grid } from 'semantic-ui-react';
 
 class Login extends Component {
     state = {
@@ -54,30 +54,34 @@ class Login extends Component {
 
         return (
             <div className="container">
-                <h2>Would You Rather...</h2>
-                <h3>Login</h3>
-                <form className='login' onSubmit={this.handleSubmit}>
-                    <select 
-                        id="userslist"
-                        style={{display: "inline"}}
-                        value={user}
-                        onChange={this.handleChange}
-                        >
-                        <option key="1">-- Please Select --</option>
-                        {Object.keys(users).map((user) => (
-                            <option key={users[user].id}>{users[user].name}</option>
-                        ))}
-                    </select>
-                    <br/>
-                    <button
-                        className='btn light-blue'
-                        type='submit'>
-                        Login
-                    </button>
-                    <Button variant="contained" color="primary" disableElevation>
-  Disable elevation
-</Button>
-                </form>
+                <Header as='h5' attached='top' primary>
+                    Login
+                </Header>
+                <Segment attached>
+                    <Header size='large'>Would You Rather</Header>
+                    <Grid divided>
+                        <Grid.Row>
+                            <Grid.Column>
+                                <img src="logo192.png" alt="logo" />
+                                <form className='login' onSubmit={this.handleSubmit}>
+                                    <select 
+                                        id="userslist"
+                                        style={{display: "inline"}}
+                                        value={user}
+                                        onChange={this.handleChange}
+                                        >
+                                        <option key="1">-- Please Select --</option>
+                                        {Object.keys(users).map((user) => (
+                                            <option key={users[user].id}>{users[user].name}</option>
+                                        ))}
+                                    </select>
+                                    <br/><br/>
+                                    <Button primary type="submit">Login</Button>
+                                </form>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
             </div>
         )
     }

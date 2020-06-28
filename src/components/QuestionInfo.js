@@ -4,6 +4,7 @@ import Avatar from './Avatar'
 import QuestionResults from './QuestionResults'
 import VoteQuestion from './VoteQuestion'
 import NotFound from './NotFound'
+import { Header, Segment, Grid, Divider } from 'semantic-ui-react'
 
 class QuestionInfo extends Component {
     state = {
@@ -25,28 +26,25 @@ class QuestionInfo extends Component {
         
         return(
             <div className="container">
-                <div className="row">
-                    <div className="col s12">
-                        <div className="card">
-                            <div className="title light-blue">
-                                <b>Asked By... {user.name}</b>
-                            </div>
-                            <div className="card-content">
-                                <div className="row">
-                                    <div className="col s3 avatarparent">
-                                        <Avatar user={user} />
-                                    </div>
-                                    <div className="col s9 question-text">
-                                        { this.state.answered
-                                            ? <QuestionResults question={question} user={user}/>
-                                            : <VoteQuestion question={question} user={user} id={id} updateQuestion={this.updateQuestion}/>
-                                        }
-                                    </div>
-                                </div> 
-                            </div>
-                        </div>  
-                    </div> 
-                </div>
+                <Header as='h5' attached='top'>
+                    <b>{user.name} asks ...</b>
+                </Header>
+                <Segment attached>
+                    <Grid columns={2} divided>
+                        <Grid.Row>
+                            <Grid.Column width={6}>
+                                <Avatar user={user} />
+                                <Divider vertical />
+                            </Grid.Column>
+                            <Grid.Column width={10}>
+                                { this.state.answered
+                                    ? <QuestionResults question={question} user={user}/>
+                                    : <VoteQuestion question={question} user={user} id={id} updateQuestion={this.updateQuestion}/>
+                                }
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
             </div>
         )
     }
