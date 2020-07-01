@@ -48,14 +48,14 @@ class App extends Component {
           <div className="App">
             <LoadingBar />
             <Nav/>
-            <Switch>
-              <PrivateRoute path='/' exact component={Home} authedUser={authedUser} />
-              <Route exact path='/login' component={Login} />
-              <PrivateRoute path='/question/:id' component={QuestionInfo} authedUser={authedUser} />
-              <PrivateRoute exact path='/add' component={NewQuestion} authedUser={authedUser} />
-              <PrivateRoute exact path='/leaderboard' component={LeaderBoard} authedUser={authedUser} />
-              <Route component={NotFound} />
-            </Switch>
+              <Switch>
+                <PrivateRoute path='/' exact component={Home} authedUser={authedUser} />
+                <Route exact path='/login' component={Login} />
+                <PrivateRoute path='/question/:id' component={QuestionInfo} authedUser={authedUser} />
+                <PrivateRoute exact path='/add' component={NewQuestion} authedUser={authedUser} />
+                <PrivateRoute exact path='/leaderboard' component={LeaderBoard} authedUser={authedUser} />
+                <Route component={NotFound} />
+              </Switch>
           </div>
         </Router>
       )
@@ -64,7 +64,8 @@ class App extends Component {
 
 function mapStateToProps({ authedUser }) {
   return {
-    authedUser: authedUser
+    authedUser: authedUser,
+    loading: authedUser === null
   }
 }
 

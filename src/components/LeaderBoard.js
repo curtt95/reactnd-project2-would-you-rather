@@ -7,7 +7,7 @@ class LeaderBoard extends Component {
     render() {
         return (
             <div className="container">
-                <Header as='h5' attached='top' primary>
+                <Header as='h5' attached='top'>
                     Leaderboard
                 </Header>
                 <Segment attached>

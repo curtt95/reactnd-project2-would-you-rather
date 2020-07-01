@@ -54,7 +54,7 @@ class Login extends Component {
 
         return (
             <div className="container">
-                <Header as='h5' attached='top' primary>
+                <Header as='h5' attached='top'>
                     Login
                 </Header>
                 <Segment attached>

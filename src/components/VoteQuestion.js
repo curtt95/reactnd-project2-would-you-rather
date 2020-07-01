@@ -40,7 +40,6 @@ class VoteQuestion extends Component {
                 <Form onSubmit={this.handleSubmit}>
                     <b>Would You Rather...</b>
                     <Form.Radio
-                        fluid
                         id="one"
                         label={question.optionOne.text}
                         value='one'
@@ -48,7 +47,6 @@ class VoteQuestion extends Component {
                         onChange={this.handleChange}
                     />
                     <Form.Radio
-                        fluid
                         id="two"
                         label={question.optionTwo.text}
                         value='two'
@@ -64,7 +62,7 @@ class VoteQuestion extends Component {
     }
 }
 
-function mapStateToProps({}, { user, question, updateQuestion, id }) {
+function mapStateToProps(_, { user, question, updateQuestion, id }) {
     return {
         id: id,
         question: question,

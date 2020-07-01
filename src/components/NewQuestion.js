@@ -58,7 +58,7 @@ class NewQuestion extends Component {
                                     type='text'
                                     id="optionOne"
                                 />
-                                <p>OR</p>
+                                <span>OR</span>
                                 <input
                                     placeholder="Enter your second option..."
                                     value={optionTwo}

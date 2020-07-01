@@ -32,11 +32,11 @@ class QuestionInfo extends Component {
                 <Segment attached>
                     <Grid columns={2} divided>
                         <Grid.Row>
-                            <Grid.Column width={6}>
+                            <Grid.Column width={4}>
                                 <Avatar user={user} />
                                 <Divider vertical />
                             </Grid.Column>
-                            <Grid.Column width={10}>
+                            <Grid.Column width={12}>
                                 { this.state.answered
                                     ? <QuestionResults question={question} user={user}/>
                                     : <VoteQuestion question={question} user={user} id={id} updateQuestion={this.updateQuestion}/>

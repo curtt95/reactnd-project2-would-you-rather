@@ -10,9 +10,7 @@ class LeaderBoardItem extends Component {
 
         return (
             <Fragment>
-                <Header as='h5' attached='top'>
-                    <b>{item.name} asks ...</b>
-                </Header>
+                <Header as='h5' attached='top'>{item.name}</Header>
                 <Segment attached>
                     <Grid columns={2} divided>
                         <Grid.Row>
@@ -21,8 +19,9 @@ class LeaderBoardItem extends Component {
                                 <Divider vertical />
                             </Grid.Column>
                             <Grid.Column width={8}>
-                                <p>Number of questions: {item.questions.length}</p>
-                                <p>Number of answers: {Object.keys(item.answers).length}</p>
+                                <span><b>Number of questions:</b> {item.questions.length}</span>
+                                <Divider />
+                                <span><b>Number of answers:</b> {Object.keys(item.answers).length}</span>
                             </Grid.Column>
                             <Divider vertical />
                             <Grid.Column width={4}>
