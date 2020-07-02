@@ -11,9 +11,9 @@ class LeaderBoard extends Component {
                     Leaderboard
                 </Header>
                 <Segment attached>
-                    {this.props.users.map((id) => (
+                    {this.props.users.map((id, index) => (
                         <Fragment key={id}>
-                            <LeaderBoardItem id={id} />
+                            <LeaderBoardItem id={id} place={index + 1}/>
                         </Fragment>
                     ))}
                 </Segment>

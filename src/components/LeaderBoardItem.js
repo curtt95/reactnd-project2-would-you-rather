@@ -6,12 +6,15 @@ import { Grid, Header, Segment, Divider } from 'semantic-ui-react'
 
 class LeaderBoardItem extends Component {
     render() {
-        const { item } = this.props
+        const { item, place } = this.props
+
+        const order = getPlace(place)
 
         return (
             <Fragment>
                 <Header as='h5' attached='top'>{item.name}</Header>
                 <Segment attached>
+                    <a className={`ui ${order} left corner label`}>{place}</a>
                     <Grid columns={2} divided>
                         <Grid.Row>
                             <Grid.Column width={4}>
@@ -32,6 +35,19 @@ class LeaderBoardItem extends Component {
                 </Segment>
             </Fragment>
         )
+    }
+}
+
+const getPlace = (place) => {
+    switch (place) {
+        case 1:
+            return "yellow"
+        case 2:
+            return "silver"
+        case 3:
+            return "brown"
+        default:
+            return ""
     }
 }
 

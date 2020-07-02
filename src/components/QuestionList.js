@@ -34,21 +34,29 @@ class QuestionList extends Component {
 
                 { activeItem === "unanswered" ? 
                     <Segment>
-                        {this.props.unansweredquestions.map((id) => (
-                            <Fragment key={id}>
-                                <Question id={id} answered={false}/>
-                                <br/>
-                            </Fragment>
-                        ))}
+                        {this.props.unansweredquestions.length > 0 ? 
+                            this.props.unansweredquestions.map((id) => (
+                                <Fragment key={id}>
+                                    <Question id={id} answered={false}/>
+                                    <br/>
+                                </Fragment>
+                            ))
+                            :
+                            <span>You have no unanswered questions...</span>
+                        }
                     </Segment>
                     :
                     <Segment>
-                        {this.props.answeredquestions.map((id) => (
-                            <Fragment key={id}>
-                                <Question id={id} answered={true}/>
-                                <br/>
-                            </Fragment>
-                        ))}
+                        {this.props.answeredquestions.length > 0 ? 
+                            this.props.answeredquestions.map((id) => (
+                                <Fragment key={id}>
+                                    <Question id={id} answered={true}/>
+                                    <br/>
+                                </Fragment>
+                            ))
+                            :
+                            <span>You have no answered questions...</span>
+                        }
                     </Segment>
                 }
             </Fragment>

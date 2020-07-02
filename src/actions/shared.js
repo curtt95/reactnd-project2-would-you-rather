@@ -37,6 +37,7 @@ export function handleInitialData() {
 
 export function handleSaveQuestionAnswer (option, id) {
     return (dispatch, getState) => {
+        dispatch(showLoading())
         const { authedUser } = getState()
 
         return saveQuestion({
@@ -46,23 +47,26 @@ export function handleSaveQuestionAnswer (option, id) {
         })
         .then((question) => {
             dispatch(saveQuestionAnswer(option, id, authedUser))
+            dispatch(hideLoading())
         }) // TODO : add to users state
     }
 }
 
 export function handleAddQuestion (optionOne, optionTwo) {
     return (dispatch, getState) => {
-      const { authedUser } = getState()
+        dispatch(showLoading())
+        const { authedUser } = getState()
 
-      let question = {
-        optionOneText: optionOne,
-        optionTwoText: optionTwo,
-        author: authedUser
-      }
-  
-      return _saveQuestion(question)
-        .then((question) => {
-            dispatch(addQuestion(question))
-        })
+        let question = {
+            optionOneText: optionOne,
+            optionTwoText: optionTwo,
+            author: authedUser
+        }
+    
+        return _saveQuestion(question)
+            .then((question) => {
+                dispatch(addQuestion(question))
+                dispatch(hideLoading())
+            })
     }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 class QuestionResults extends Component {
@@ -13,10 +13,11 @@ class QuestionResults extends Component {
         const percentageTwo = Math.round((votesOptionTwo / totalvotes) * 100)
 
         return (
-            <div className="container">
+            <Fragment>
                 <h5>Results:</h5>
-                <div className={ question.optionOne.votes.includes(authedUser) ? 'col s6 question light-blue' : 'col s6 question' }>
-                    <div className="card-content">
+                <div className="column">
+                    <div className="ui raised segment fluid">
+                    { question.optionOne.votes.includes(authedUser)  && <div className="ui top right attached label blue">Your Answer</div> }
                         <p>Would you rather {question.optionOne.text}</p>
                         <b>Votes: {votesOptionOne}</b><br/>
                         <b>{percentageOne}%</b>
@@ -25,8 +26,9 @@ class QuestionResults extends Component {
                         </div>
                     </div>
                 </div>
-                <div className={ question.optionTwo.votes.includes(authedUser) ? 'col s6 question light-blue' : 'col s6 question' }>
-                    <div className="card-content">
+                <div className="column">
+                    <div className="ui raised segment fluid">
+                    { question.optionTwo.votes.includes(authedUser)  && <div className="ui top right attached label blue">Your Answer</div> }
                         <p>Would you rather {question.optionTwo.text}</p>
                         <b>Votes: {votesOptionTwo}</b><br/>
                         <b>{percentageTwo}%</b>
@@ -35,7 +37,7 @@ class QuestionResults extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Fragment>
         )
     }
 }

@@ -36,28 +36,28 @@ class VoteQuestion extends Component {
         const { option } = this.state
 
         return (
-            <div className="radio-toolbar">
-                <Form onSubmit={this.handleSubmit}>
-                    <b>Would You Rather...</b>
-                    <Form.Radio
-                        id="one"
-                        label={question.optionOne.text}
-                        value='one'
-                        checked={option === "optionOne" ? true : false}
-                        onChange={this.handleChange}
-                    />
-                    <Form.Radio
-                        id="two"
-                        label={question.optionTwo.text}
-                        value='two'
-                        checked={option === "optionTwo" ? true : false}
-                        onChange={this.handleChange}
-                    />
-                    <Form.Button disabled={option === null} fluid primary>
-                        Vote
-                    </Form.Button>
-                </Form>
-            </div>
+            <Form onSubmit={this.handleSubmit}>
+                <h5>Would You Rather...</h5>
+                <Form.Radio
+                    className="ui raised segment fluid"
+                    id="one"
+                    label={question.optionOne.text}
+                    value='one'
+                    checked={option === "optionOne" ? true : false}
+                    onChange={this.handleChange}
+                />
+                <Form.Radio
+                    className="ui raised segment fluid"
+                    id="two"
+                    label={question.optionTwo.text}
+                    value='two'
+                    checked={option === "optionTwo" ? true : false}
+                    onChange={this.handleChange}
+                />
+                <Form.Button disabled={option === null} fluid primary>
+                    Vote
+                </Form.Button>
+            </Form>
         )
     }
 }

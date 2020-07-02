@@ -25,7 +25,7 @@ export function handleSetAuthedUser (username) {
 }
 
 export function handleLogOut() {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         return dispatch(logOut())
     }
 }
