@@ -4,6 +4,9 @@ import users from './users'
 import questions from './questions'
 import { loadingBarReducer } from 'react-redux-loading'
 
+/**
+ * combineReducers function
+ */
 export default combineReducers({
     authedUser,
     users, 

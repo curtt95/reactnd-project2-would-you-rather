@@ -5,32 +5,45 @@ import { auth } from './App'
 import { handleLogOut } from '../actions/authedUser'
 import { Menu } from 'semantic-ui-react'
 
+/**
+ * Top Navigation
+ */
 class Nav extends Component {
-    state = { 
+    state = { // set state
         activeItem: '' 
     }
 
+    /**
+     * @description Handle submission of form
+     * @param {Event} e - the event 
+     */
     handleSubmit = (e) => {
         e.preventDefault()
         
-        const { dispatch } = this.props
+        const { dispatch } = this.props // get dispatch from props
 
-        dispatch(handleLogOut())
+        dispatch(handleLogOut()) // dispatch log out
 
-        auth.signout()
+        auth.signout() // sign out function
     }
 
+    /**
+     * @description Handle item click
+     * @param {Event} e - the event 
+     * @param {Object} - the name 
+     */
     handleItemClick = (e, { name }) => {
         this.setState({ 
-            activeItem: name 
+            activeItem: name // set state to name
         })
     }
 
     render() {
-        const { activeItem } = this.state
+        const { activeItem } = this.state // get state
 
         return (
             <div>
+                {/* Menu to navigate between pages */}
                 <Menu pointing secondary>
                     <Menu.Item
                         name='home'
@@ -55,6 +68,7 @@ class Nav extends Component {
                         onClick={this.handleItemClick}
                     />
 
+                    {/* If user is logged in show the following */}
                     { this.props.user !== undefined && 
                         <Menu.Menu position='right'>
                             <Menu.Item>
@@ -75,11 +89,15 @@ class Nav extends Component {
     }
 }
 
+/**
+  * @description mapStateToProps function
+  * @param {Object} from_store - Get data from store
+  */
 function mapStateToProps({ users, authedUser }) {
-    const user = users[authedUser]
+    const user = users[authedUser] // get user
 
     return {
-        user: user
+        user: user // return user
     }
 }
 

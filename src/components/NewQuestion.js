@@ -11,25 +11,33 @@ class NewQuestion extends Component {
         toHome: false
     }
 
+    /**
+     * @description Handle submission of form
+     * @param {Event} e - the event 
+     */
     handleSubmit = (e) => {
         e.preventDefault()
 
-        const { optionOne, optionTwo } = this.state
-        const { dispatch, id } = this.props
+        const { optionOne, optionTwo } = this.state // get options from state
+        const { dispatch, id } = this.props // get dispatch and id from props
 
-        dispatch(handleAddQuestion(optionOne, optionTwo))
+        dispatch(handleAddQuestion(optionOne, optionTwo)) // dispatch handle add question
 
         this.setState({
             optionOne: '',
             optionTwo: '',
-            toHome: id ? false : true
+            toHome: id ? false : true // if id is set false else true
         })
     }
 
+    /**
+     * @description Handle change of form
+     * @param {Event} e - the event 
+     */
     handleChange = (e) => {
         if (e.target.id === "optionOne") {
             this.setState({
-                optionOne: e.target.value
+                optionOne: e.target.value // set state
             })
         } else {
             this.setState({
@@ -39,9 +47,9 @@ class NewQuestion extends Component {
     }
 
     render() {
-        const { optionOne, optionTwo, toHome } = this.state
+        const { optionOne, optionTwo, toHome } = this.state // get options from state
 
-        if (toHome === true) {
+        if (toHome === true) { // if submitted return home
             return <Redirect to='/' />
         }
 
@@ -57,7 +65,9 @@ class NewQuestion extends Component {
                             <Header as='h4'>
                                 Would You Rather...
                             </Header>
+                            {/* Form to create new question */}
                             <form className='new-question' onSubmit={this.handleSubmit}>
+                                {/* Option One */}
                                 <input
                                     placeholder="Enter your first option..."
                                     value={optionOne}
@@ -66,6 +76,7 @@ class NewQuestion extends Component {
                                     id="optionOne"
                                 />
                                 <span>OR</span>
+                                {/* Option Two */}
                                 <input
                                     placeholder="Enter your second option..."
                                     value={optionTwo}
@@ -73,6 +84,7 @@ class NewQuestion extends Component {
                                     type='text'
                                     id="optionTwo"
                                 />
+                                {/* Submit */}
                                 <Button 
                                     disabled={optionOne === '' || optionTwo === ''}
                                     primary>
