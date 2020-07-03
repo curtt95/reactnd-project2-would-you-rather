@@ -12,18 +12,30 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import QuestionInfo from './QuestionInfo'
 import LoadingBar from 'react-redux-loading'
 
+/**
+ * The authentication object
+ */
 export const auth = {
   isAuthenticated: false,
+
+  // authenticate the user
   authenticate(cb) {
     this.isAuthenticated = true
     setTimeout(cb, 100)
   },
+
+  // sign the user out
   signout(cb) {
     this.isAuthenticated = false
     setTimeout(cb, 100)
   }
 }
 
+/**
+  * @description Creates a private route
+  * @param {Component} component - The existing component
+  * @param ...rest - The rest of the parameters
+  */
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
     auth.isAuthenticated
@@ -36,25 +48,29 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 class App extends Component {
+  /**
+   * Gets all of the initial data
+   */
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
 
   render() {
-    const { authedUser } = this.props
+    const { authedUser } = this.props // destructure props
 
     return (
-        <Router>
+        <Router>{/* Create new router in react-router-dom */}
           <div className="App">
-            <LoadingBar />
-            <Nav/>
+            <LoadingBar /> {/* Show loading bar while loading */}
+            <Nav/> {/* Top Nav */}
+            {/* Switch statement for routes - react-router-dom */}
               <Switch>
                 <PrivateRoute path='/' exact component={Home} authedUser={authedUser} />
                 <Route exact path='/login' component={Login} />
                 <PrivateRoute path='/question/:id' component={QuestionInfo} authedUser={authedUser} />
                 <PrivateRoute exact path='/add' component={NewQuestion} authedUser={authedUser} />
                 <PrivateRoute exact path='/leaderboard' component={LeaderBoard} authedUser={authedUser} />
-                <Route component={NotFound} />
+                <Route component={NotFound} /> {/* Show 404 Not Found page if not found */}
               </Switch>
           </div>
         </Router>
@@ -62,6 +78,11 @@ class App extends Component {
     }
 }
 
+/**
+  * @description mapStateToProps function
+  * @param {Object} from_store - Get data from store
+  * @return {Object} props
+  */
 function mapStateToProps({ authedUser }) {
   return {
     authedUser: authedUser,

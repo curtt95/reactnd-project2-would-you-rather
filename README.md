@@ -1,10 +1,72 @@
-# Would You Rather Project
+# Would You Rather Project - Curtis Thompson
 
-This is the starter code for the final assessment project for Udacity's React & Redux course.
+This is my submission for project 2 of my React Nanodegree - Would You Rather. Would You Rather is a game whereby users can ask each other questions, where questions have a
+possible 2 answers. These polls will then help decide which is the most popular choice by users. An example is:
 
-The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
+Would You Rather...
+1 - Be a back end developer
+2 - Be a front end developer
 
-Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
+After voting users will then be able to see the results of the questions. 
+
+There will also be a leaderboard - users will be ranked on the following in descending order:
+
+Score = (number of questions asked) + (number of questions answered)
+
+## TL;DR
+
+To get started developing right away:
+
+- install all project dependencies with `npm install`
+- start the development server with `npm start`
+
+## What You're Getting
+
+```bash
+├── README.md - This file.
+├── package.json # npm package manager file
+├── public
+│   ├── favicon.ico # React Icon
+│   └── index.html 
+└── src
+    ├── App.css # Styles for your app. Feel free to customize this as you desire.
+    ├── index.css # Global styles. You probably won't need to change anything here.
+    ├── index.js # You should not need to modify this file. It is used for DOM rendering only.
+    ├── actions
+    │   ├── authedUser.js # actions for authentication
+    │   ├── questions.js # actions for questions
+    │   ├── shared.js # shared actions
+    │   └── users.js # actions for users
+    ├── components
+    │   ├── App.js # This is the root of your app. Contains static HTML right now.
+    │   ├── Avatar.js # Displays a users avatar
+    │   ├── Leaderboard.js # Leaderboard components to show ranking
+    │   ├── LeaderboardItem.js # Leaderboard item for user
+    │   ├── Loading.js # Loading bar   
+    │   ├── Login.js # Login component
+    │   ├── Nav.js # Navigation at top component
+    │   ├── NewQuestion.js # Create new poll question
+    │   ├── NotFound.js # 404 Not Found component
+    │   ├── Question.js # Question on home page component
+    │   ├── QuestionInfo.js # Specific question information component
+    │   ├── QuestionList.js # List of questions on home page
+    │   ├── QuestionResults.js # Results of poll
+    │   ├── Score.js # The users score component
+    │   └── VoteQuestion.js # Vote in a poll form component
+    ├── middleware
+    │   ├── authedUser.js # middleware for authedUser
+    │   ├── index.js # middleware combiner
+    │   └── logger.js # logs all changes to state in console
+    ├── reducers
+    │   ├── authedUser.js # reducer for authedUser
+    │   ├── index.js # middleware combiner
+    │   ├── questions.js # reducer for questions
+    │   └── users.js # reducer for users
+    ├── utils
+    │   ├── _DATA.js # data json file
+    │   └── api.js # api file
+
+TODO
 
 ## Data
 
@@ -17,34 +79,34 @@ There are two types of objects stored in our database:
 
 Users include:
 
-| Attribute    | Type             | Description           |
-|-----------------|------------------|-------------------         |
-| id                 | String           | The user’s unique identifier |
-| name          | String           | The user’s first name  and last name     |
-| avatarURL  | String           | The path to the image file |
-| questions | Array | A list of ids of the polling questions this user created|
-| answers      | Object         |  The object's keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options.
+| Attribute         | Type             | Description           
+|-------------------|------------------|-------------------         
+| id                | String           | The user’s unique identifier 
+| name              | String           | The user’s first name  and last name     
+| avatarURL         | String           | The path to the image file 
+| questions         | Array            | A list of ids of the polling questions this user created
+| answers           | Object           |  The objects keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options.
 
 ### Questions
 
 Questions include:
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| id                  | String | The question’s unique identifier |
-| author        | String | The author’s unique identifier |
-| timestamp | String | The time when the question was created|
-| optionOne | Object | The first voting option|
-| optionTwo | Object | The second voting option|
+| Attribute         | Type   | Description 
+|-------------------|--------|-------------------
+| id                | String | The question’s unique identifier 
+| author            | String | The author’s unique identifier 
+| timestamp         | String | The time when the question was created
+| optionOne         | Object | The first voting option
+| optionTwo         | Object | The second voting option
 
 ### Voting Options
 
 Voting options are attached to questions. They include:
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| votes             | Array | A list that contains the id of each user who voted for that option|
-| text                | String | The text of the option |
+| Attribute | Type   | Description 
+|-----------|--------|-------------------
+| votes     | Array  | A list that contains the id of each user who voted for that option
+| text      | String | The text of the option 
 
 Your code will talk to the database via 4 methods:
 

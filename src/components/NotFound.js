@@ -1,5 +1,8 @@
 import React from 'react'
 
+/**
+ * 404 Not Found Page
+ */
 export default function NotFound() {
     return (
         <div class="mainbox">

@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 
+/**
+ * Show Avatar Component
+ */
 class Avatar extends Component {
     render() {
+        /**
+         * Return avatar image
+         */
         return (
             <div className="avatarDiv">
                 <img
