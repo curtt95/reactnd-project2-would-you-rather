@@ -66,8 +66,6 @@ To get started developing right away:
     │   ├── _DATA.js # data json file
     │   └── api.js # api file
 
-TODO
-
 ## Data
 
 There are two types of objects stored in our database:

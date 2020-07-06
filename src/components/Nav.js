@@ -18,13 +18,13 @@ class Nav extends Component {
      * @param {Event} e - the event 
      */
     handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         
-        const { dispatch } = this.props // get dispatch from props
+        const { dispatch } = this.props; // get dispatch from props
 
-        dispatch(handleLogOut()) // dispatch log out
+        dispatch(handleLogOut()); // dispatch log out
 
-        auth.signout() // sign out function
+        auth.signout(); // sign out function
     }
 
     /**
@@ -35,11 +35,11 @@ class Nav extends Component {
     handleItemClick = (e, { name }) => {
         this.setState({ 
             activeItem: name // set state to name
-        })
+        });
     }
 
     render() {
-        const { activeItem } = this.state // get state
+        const { activeItem } = this.state; // get state
 
         return (
             <div>
@@ -94,11 +94,11 @@ class Nav extends Component {
   * @param {Object} from_store - Get data from store
   */
 function mapStateToProps({ users, authedUser }) {
-    const user = users[authedUser] // get user
+    const user = users[authedUser]; // get user
 
     return {
         user: user // return user
-    }
+    };
 }
 
 export default connect(mapStateToProps)(Nav)

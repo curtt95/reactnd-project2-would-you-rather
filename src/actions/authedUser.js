@@ -11,7 +11,7 @@ export function setAuthedUser(id) {
     return {
         type: SET_AUTHED_USER,
         id
-    }
+    };
 }
 
 /**
@@ -21,7 +21,7 @@ export function setAuthedUser(id) {
 export function logOut() {
     return {
         type: LOG_OUT
-    }
+    };
 }
 
 /**
@@ -31,11 +31,11 @@ export function logOut() {
   */
 export function handleSetAuthedUser (username) {
     return (dispatch, getState) => {
-        const { users } = getState() // get users from state
+        const { users } = getState(); // get users from state
 
-        const user = Object.keys(users).filter((user) => users[user].name === username) // get user using filter function
+        const user = Object.keys(users).filter((user) => users[user].name === username); // get user using filter function
 
-        return dispatch(setAuthedUser(user[0])) // return dispatch setAuthedUser
+        return dispatch(setAuthedUser(user[0])); // return dispatch setAuthedUser
     }
 }
 
@@ -45,6 +45,6 @@ export function handleSetAuthedUser (username) {
   */
 export function handleLogOut() {
     return (dispatch) => {
-        return dispatch(logOut()) // dispatch log out
-    }
+        return dispatch(logOut()); // dispatch log out
+    };
 }

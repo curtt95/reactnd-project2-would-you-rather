@@ -12,7 +12,7 @@ export default function users(state = {}, action) {
             return {
                 ...state,
                 ...action.users // receive all users
-            }
+            };
         case ADD_QUESTION:
             return {
                 ...state,
@@ -20,7 +20,7 @@ export default function users(state = {}, action) {
                     ...state[action.question.author],
                     questions: state[action.question.author].questions.concat(action.question.id) // on add question, add to questions array in users object
                 }
-            }
+            };
         case SAVE_QUESTION_ANSWER:
             return {
                 ...state,
@@ -31,7 +31,7 @@ export default function users(state = {}, action) {
                         [action.id]: action.option // store users option when voting on a question
                     }
                 }
-            }
+            };
         default:
             return state
     }

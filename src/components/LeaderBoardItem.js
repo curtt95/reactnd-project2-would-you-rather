@@ -17,7 +17,7 @@ class LeaderBoardItem extends Component {
             <Fragment>
                 <Header as='h5' attached='top'>{item.name}</Header>
                 <Segment attached>
-                    <a className={`ui ${order} left corner label`}>{place}</a> {/* Color based on ranking */}
+                    <a href="/leaderboard" className={`ui ${order} left corner label`}>{place}</a> {/* Color based on ranking */}
                     <Grid columns={2} divided>
                         <Grid.Row>
                             <Grid.Column width={4}>
@@ -25,9 +25,9 @@ class LeaderBoardItem extends Component {
                                 <Divider vertical />
                             </Grid.Column>
                             <Grid.Column width={8}>
-                                <span><b>Number of questions:</b> {item.questions.length}</span> {/* Number of questions */}
+                                <span><b>Number of questions asked:</b> {item.questions.length}</span> {/* Number of questions */}
                                 <Divider />
-                                <span><b>Number of answers:</b> {Object.keys(item.answers).length}</span> {/* Number of answers */}
+                                <span><b>Number of questions answered:</b> {Object.keys(item.answers).length}</span> {/* Number of answers */}
                             </Grid.Column>
                             <Divider vertical />
                             <Grid.Column width={4}>
@@ -49,14 +49,14 @@ class LeaderBoardItem extends Component {
 const getPlace = (place) => {
     switch (place) {
         case 1:
-            return "yellow" // first place
+            return "yellow"; // first place
         case 2:
-            return "silver" // second place
+            return "silver"; // second place
         case 3:
-            return "brown" // third place
+            return "brown"; // third place
         default:
-            return ""
-    }
+            return "";
+    };
 }
 
 /**
@@ -66,11 +66,11 @@ const getPlace = (place) => {
   * @return {Object} props
   */
 function mapStateToProps({ users }, { id }) {
-    const item = users[id] // get user
+    const item = users[id]; // get user
 
     return {
         item: item // return user as props
-    }
+    };
 }
 
 export default connect(mapStateToProps)(LeaderBoardItem)

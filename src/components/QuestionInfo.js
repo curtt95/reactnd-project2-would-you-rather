@@ -21,11 +21,11 @@ class QuestionInfo extends Component {
     updateQuestion = () => {
         this.setState({
             answered: true // set state answer as true
-        })
+        });
     }
 
     render() {
-        const { question, user, id } = this.props // get the props
+        const { question, user, id } = this.props; // get the props
 
         // if question is undefined show 404
         if (question === undefined) {
@@ -67,17 +67,17 @@ class QuestionInfo extends Component {
   * @return {Object} props
   */
 function mapStateToProps({ authedUser, users, questions }, props) {
-    const { id } = props.match.params // get id in url
-    const question = questions[id] // get question
-    const user = question !== undefined ? users[question.author] : '' // get user
-    const authedUserobj = users[authedUser] // get autheduser
+    const { id } = props.match.params; // get id in url
+    const question = questions[id]; // get question
+    const user = question !== undefined ? users[question.author] : ''; // get user
+    const authedUserobj = users[authedUser]; // get autheduser
 
     return { // return object
         question: question,
         user: user,
         id: id,
         authedUser: authedUserobj
-    }
+    };
 }
 
 export default connect(mapStateToProps)(QuestionInfo)

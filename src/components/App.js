@@ -20,14 +20,14 @@ export const auth = {
 
   // authenticate the user
   authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100)
+    this.isAuthenticated = true;
+    setTimeout(cb, 100);
   },
 
   // sign the user out
   signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100)
+    this.isAuthenticated = false;
+    setTimeout(cb, 100);
   }
 }
 
@@ -52,17 +52,17 @@ class App extends Component {
    * Gets all of the initial data
    */
   componentDidMount() {
-    this.props.dispatch(handleInitialData())
+    this.props.dispatch(handleInitialData());
   }
 
   render() {
-    const { authedUser } = this.props // destructure props
+    const { authedUser } = this.props; // destructure props
 
     return (
         <Router>{/* Create new router in react-router-dom */}
           <div className="App">
             <LoadingBar /> {/* Show loading bar while loading */}
-            <Nav/> {/* Top Nav */}
+            { auth.isAuthenticated && <Nav/> } {/* Top Nav */}
             {/* Switch statement for routes - react-router-dom */}
               <Switch>
                 <PrivateRoute path='/' exact component={Home} authedUser={authedUser} />
@@ -87,7 +87,7 @@ function mapStateToProps({ authedUser }) {
   return {
     authedUser: authedUser,
     loading: authedUser === null
-  }
+  };
 }
 
 export default connect(mapStateToProps)(App);

@@ -20,11 +20,11 @@ class QuestionList extends Component {
     handleClick = (e, { name }) => {
         this.setState({
             activeItem: name // set state to name
-        })
+        });
     }
 
     render() {
-        const { activeItem } = this.state // get item
+        const { activeItem } = this.state; // get item
 
         return (
             <Fragment>
@@ -82,13 +82,13 @@ class QuestionList extends Component {
   * @param {Object} from_store - Get data from store
   */
 function mapStateToProps({ authedUser, questions }) {
-    const answeredquestions = Object.keys(questions).filter((question) => questions[question].optionOne.votes.includes(authedUser) || questions[question].optionTwo.votes.includes(authedUser)) // filter answered questions
-    const unansweredquestions = Object.keys(questions).filter((question) => !questions[question].optionOne.votes.includes(authedUser) && !questions[question].optionTwo.votes.includes(authedUser)) // filter unanswered questions
+    const answeredquestions = Object.keys(questions).filter((question) => questions[question].optionOne.votes.includes(authedUser) || questions[question].optionTwo.votes.includes(authedUser)); // filter answered questions
+    const unansweredquestions = Object.keys(questions).filter((question) => !questions[question].optionOne.votes.includes(authedUser) && !questions[question].optionTwo.votes.includes(authedUser)); // filter unanswered questions
 
     return {
         answeredquestions: answeredquestions.sort((a,b) => questions[b].timestamp - questions[a].timestamp), // sort by newest first
         unansweredquestions: unansweredquestions.sort((a,b) => questions[b].timestamp - questions[a].timestamp) // sort by newest first
-    }
+    };
 }
 
 export default connect(mapStateToProps)(QuestionList)

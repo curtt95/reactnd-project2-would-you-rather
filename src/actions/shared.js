@@ -16,7 +16,7 @@ export function addQuestion(question) {
     return {
         type: ADD_QUESTION,
         question
-    }
+    };
   }
 
   /**
@@ -32,7 +32,7 @@ export function saveQuestionAnswer (option, id, authedUser) {
       option,
       id,
       authedUser
-    }
+    };
 }
 
 /**
@@ -41,14 +41,14 @@ export function saveQuestionAnswer (option, id, authedUser) {
   */
 export function handleInitialData() {
     return (dispatch) => {
-        dispatch(showLoading())
+        dispatch(showLoading());
         return getInitialData() // get initial data from api
             .then(({ users, questions }) => {
-                dispatch(receiveUsers(users))
-                dispatch(receiveQuestions(questions)) // get users and questions
-                dispatch(hideLoading())
-            })
-    }
+                dispatch(receiveUsers(users));
+                dispatch(receiveQuestions(questions)); // get users and questions
+                dispatch(hideLoading());
+            });
+    };
 }
 
 /**
@@ -59,8 +59,8 @@ export function handleInitialData() {
   */
 export function handleSaveQuestionAnswer (option, id) {
     return (dispatch, getState) => {
-        dispatch(showLoading())
-        const { authedUser } = getState()
+        dispatch(showLoading());
+        const { authedUser } = getState();
 
         return saveQuestion({
             authedUser: authedUser,
@@ -68,10 +68,10 @@ export function handleSaveQuestionAnswer (option, id) {
             answer: option,
         })
         .then((question) => {
-            dispatch(saveQuestionAnswer(option, id, authedUser))
-            dispatch(hideLoading())
-        }) // TODO : add to users state
-    }
+            dispatch(saveQuestionAnswer(option, id, authedUser));
+            dispatch(hideLoading());
+        });
+    };
 }
 
 /**
@@ -82,19 +82,19 @@ export function handleSaveQuestionAnswer (option, id) {
   */
 export function handleAddQuestion (optionOne, optionTwo) {
     return (dispatch, getState) => {
-        dispatch(showLoading())
-        const { authedUser } = getState() // get authed user
+        dispatch(showLoading());
+        const { authedUser } = getState(); // get authed user
 
         let question = { // create new question object to pass to function
             optionOneText: optionOne,
             optionTwoText: optionTwo,
             author: authedUser
-        }
+        };
     
         return _saveQuestion(question)
             .then((question) => {
-                dispatch(addQuestion(question))
-                dispatch(hideLoading())
-            })
+                dispatch(addQuestion(question));
+                dispatch(hideLoading());
+            });
     }
 }

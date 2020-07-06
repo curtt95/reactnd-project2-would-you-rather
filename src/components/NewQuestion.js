@@ -16,18 +16,18 @@ class NewQuestion extends Component {
      * @param {Event} e - the event 
      */
     handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        const { optionOne, optionTwo } = this.state // get options from state
-        const { dispatch, id } = this.props // get dispatch and id from props
+        const { optionOne, optionTwo } = this.state; // get options from state
+        const { dispatch, id } = this.props; // get dispatch and id from props
 
-        dispatch(handleAddQuestion(optionOne, optionTwo)) // dispatch handle add question
+        dispatch(handleAddQuestion(optionOne, optionTwo)); // dispatch handle add question
 
         this.setState({
             optionOne: '',
             optionTwo: '',
             toHome: id ? false : true // if id is set false else true
-        })
+        });
     }
 
     /**
@@ -38,16 +38,16 @@ class NewQuestion extends Component {
         if (e.target.id === "optionOne") {
             this.setState({
                 optionOne: e.target.value // set state
-            })
+            });
         } else {
             this.setState({
                 optionTwo: e.target.value
-            })
+            });
         }
     }
 
     render() {
-        const { optionOne, optionTwo, toHome } = this.state // get options from state
+        const { optionOne, optionTwo, toHome } = this.state; // get options from state
 
         if (toHome === true) { // if submitted return home
             return <Redirect to='/' />

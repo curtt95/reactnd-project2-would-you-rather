@@ -30,19 +30,19 @@ class Login extends Component {
      * @param {Event} e - the event 
      */
     handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        const { user } = this.state // get user from state
-        const { dispatch } = this.props // get dispatch from props
+        const { user } = this.state; // get user from state
+        const { dispatch } = this.props; // get dispatch from props
 
         if (user !== '-- Please Select --') { // if user selected
-            dispatch(handleSetAuthedUser(user)) // dispatch set auth user
+            dispatch(handleSetAuthedUser(user)); // dispatch set auth user
 
             auth.authenticate(() => { // call authenticate function and redirect
                 this.setState(() => ({
                     redirectToReferrer: true
-                }))
-            })
+                }));
+            });
         }
     }
 
@@ -53,13 +53,13 @@ class Login extends Component {
     handleChange = (e) => {
         this.setState({
             user: e.target.value // set state to user
-        })
+        });
     }
 
     render() {
-        const { users } = this.props // get our props
-        const { user, redirectToReferrer } = this.state //  get our state
-        const { from } = this.props.location.state || { from: { pathname: '/' } } // get history so we can redirect
+        const { users } = this.props; // get our props
+        const { user, redirectToReferrer } = this.state; //  get our state
+        const { from } = this.props.location.state || { from: { pathname: '/' } }; // get history so we can redirect
 
         // if authed redirect to existing page
         if (redirectToReferrer) {
@@ -78,6 +78,7 @@ class Login extends Component {
                 </Header>
                 <Segment attached>
                     <Header size='large'>Would You Rather</Header>
+                    <span>Please sign in to play...</span>
                     <Grid divided>
                         <Grid.Row>
                             <Grid.Column>
@@ -116,7 +117,7 @@ class Login extends Component {
 function mapStateToProps({ users }) {
     return {
         users: users // return users
-    }
+    };
 }
 
 export default connect(mapStateToProps)(Login)

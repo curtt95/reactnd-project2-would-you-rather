@@ -6,14 +6,14 @@ import { connect } from 'react-redux'
  */
 class QuestionResults extends Component {
     render() {
-        const { question, authedUser } = this.props // get props
+        const { question, authedUser } = this.props; // get props
 
-        const votesOptionOne = question.optionOne.votes.length // option 1 votes
-        const votesOptionTwo = question.optionTwo.votes.length // option 2 votes
+        const votesOptionOne = question.optionOne.votes.length; // option 1 votes
+        const votesOptionTwo = question.optionTwo.votes.length; // option 2 votes
 
-        const totalvotes = votesOptionOne + votesOptionTwo // total votes
-        const percentageOne = Math.round((votesOptionOne / totalvotes) * 100) // % option 1
-        const percentageTwo = Math.round((votesOptionTwo / totalvotes) * 100) // % option 2
+        const totalvotes = votesOptionOne + votesOptionTwo; // total votes
+        const percentageOne = Math.round((votesOptionOne / totalvotes) * 100); // % option 1
+        const percentageTwo = Math.round((votesOptionTwo / totalvotes) * 100); // % option 2
 
         return (
             <Fragment>
@@ -60,7 +60,7 @@ function mapStateToProps({ authedUser }, { question, user }) {
         question: question,
         authedUser: authedUser,
         user: user
-    }
+    };
 }
 
 export default connect(mapStateToProps)(QuestionResults)

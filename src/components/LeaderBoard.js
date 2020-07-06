@@ -33,11 +33,11 @@ class LeaderBoard extends Component {
   */
 function mapStateToProps({ users }) {
     // Get all users from the store and sort desceding based on score where => Score = (number of questions asked) + (number of questions answered)
-    const sortedusers = Object.keys(users).sort((a,b) => (users[b].questions.length + Object.keys(users[b].answers).length) - (users[a].questions.length + Object.keys(users[a].answers).length))
+    const sortedusers = Object.keys(users).sort((a,b) => (users[b].questions.length + Object.keys(users[b].answers).length) - (users[a].questions.length + Object.keys(users[a].answers).length));
 
     return {
         users: sortedusers //return sorted users
-    }
+    };
 }
 
 export default connect(mapStateToProps)(LeaderBoard)

@@ -16,14 +16,14 @@ class VoteQuestion extends Component {
      * @param {Event} e - the event 
      */
     handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        const { option } = this.state // get option
-        const { dispatch, id } = this.props // get props
+        const { option } = this.state; // get option
+        const { dispatch, id } = this.props; // get props
 
-        dispatch(handleSaveQuestionAnswer(option, id)) // dispatch save answer
+        dispatch(handleSaveQuestionAnswer(option, id)); // dispatch save answer
 
-        this.props.updateQuestion() // call updateQuestion from props
+        this.props.updateQuestion(); // call updateQuestion from props
     }
 
     /**
@@ -34,17 +34,17 @@ class VoteQuestion extends Component {
         if (e.target.id === "one") {
             this.setState({
                 option: "optionOne" // set state
-            })
+            });
         } else {
             this.setState({
                 option: "optionTwo"
-            })
+            });
         }
     }
 
     render() {
-        const { question } = this.props
-        const { option } = this.state
+        const { question } = this.props;
+        const { option } = this.state;
 
         return (
             <Form onSubmit={this.handleSubmit}>
@@ -88,7 +88,7 @@ function mapStateToProps(_, { user, question, updateQuestion, id }) {
         question: question,
         user: user,
         updateQuestion: updateQuestion
-    }
+    };
 }
 
 export default connect(mapStateToProps)(VoteQuestion)

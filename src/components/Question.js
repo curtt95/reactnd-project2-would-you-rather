@@ -9,7 +9,7 @@ import { Grid, Header, Segment, Divider, Button } from 'semantic-ui-react'
  */
 class Question extends Component {
     render() {
-        const { user, question, answered } = this.props // get props
+        const { user, question, answered } = this.props; // get props
 
         return (
             <Link to={`/question/${question.id}`}>
@@ -49,13 +49,13 @@ class Question extends Component {
   * @return {Object} props
   */
 function mapStateToProps({ users, questions }, { id, answered }) {
-    const question =  questions[id] // get question
-    const user = users[question.author] // get user
+    const question =  questions[id]; // get question
+    const user = users[question.author]; // get user
 
     return {
         question: question,
         user: user
-    }
+    };
 }
 
 export default connect(mapStateToProps)(Question)
