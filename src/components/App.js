@@ -62,7 +62,7 @@ class App extends Component {
         <Router>{/* Create new router in react-router-dom */}
           <div className="App">
             <LoadingBar /> {/* Show loading bar while loading */}
-            { auth.isAuthenticated && <Nav/> } {/* Top Nav */}
+            <Nav/> {/* Top Nav */}
             {/* Switch statement for routes - react-router-dom */}
               <Switch>
                 <PrivateRoute path='/' exact component={Home} authedUser={authedUser} />
