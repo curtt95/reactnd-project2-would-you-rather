@@ -13,7 +13,7 @@ import QuestionInfo from './QuestionInfo'
 import LoadingBar from 'react-redux-loading'
 
 /**
- * The authentication object
+ * The authentication object - source https://ui.dev/react-router-v4-handling-404-pages/
  */
 export const auth = {
   isAuthenticated: false,
